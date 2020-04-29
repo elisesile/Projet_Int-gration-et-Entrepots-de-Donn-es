@@ -13,12 +13,12 @@ import data.Film;
 
 public class OmdbClient {
 
-    public Film getPlotByTitle(String titre, Film film){
+    public static Film getPlotByTitle(Film film){
     	
     	//Prend en entree le titre d'un film 
     	//Renvoi son plot 
 
-    	String uri = "http://www.omdbapi.com/?apikey=5153048a&type=movie&plot=full&r=xml&t="+titre;
+    	String uri = "http://www.omdbapi.com/?apikey=5153048a&type=movie&plot=full&r=xml&t="+film.getTitre();
     	String requete = "/root/movie/@plot";
     	
         try{
