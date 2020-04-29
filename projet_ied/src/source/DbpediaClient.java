@@ -27,13 +27,26 @@ public class DbpediaClient {
             while (rs.hasNext()) {
             	qs = rs.nextSolution();
             	temp = qs.get("real").toString();
-            	real += qs.get("real").toString();
+            	temp = temp.substring(temp.lastIndexOf("/"));
+            	real += temp;
             	real += ",";
             }
             
-            all.add(qs.get("acteurs").toString());
+            String[] sep = qs.get("acteurs").toString().split(",");
+            temp = null;
+            for (String value : sep) {
+            	temp+= value.substring(value.lastIndexOf("/"))+",";
+            }
+            all.add(temp.substring(0,temp.lastIndexOf(",")));
+            
             all.add(real.substring(0,real.lastIndexOf(",")));
-        	all.add(qs.get("prods").toString());
+        	
+            temp = null;
+            sep = qs.get("prods").toString().split(",");
+            for (String value : sep ) {
+            	temp += value.substring(value.lastIndexOf("/"))+",";
+            }
+            all.add(temp.substring(0,temp.lastIndexOf(",")));
         	
         	return all;
         
