@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import data.Film;
-import jdbc.Queries;
 import source.TheNumbers;
 import projet.main_1_0.main;
 
@@ -38,7 +37,6 @@ public class TestConsole {
 				if(Integer.parseInt(type) == 1) {
 					//search by title
 					//TODO
-					films = Queries.getFilms(name);
 					
 					
 					for(Film film : films) {
