@@ -50,4 +50,28 @@ public class Queries {
 		return films;
 	}
 	
+	public static ArrayList<String> getCsvInformation() {
+		ArrayList<String> csvInformation = new ArrayList<String>();
+		try {
+			String getCsvInformationQuery = "SELECT value FROM talend_info WHERE `key` REGEXP ? ORDER BY `key`;";
+
+			Connection dbConnection = JdbcConnection.getConnection();
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(getCsvInformationQuery);
+
+			preparedStatement.setString(1, "^CSV_");
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				String value = result.getString("value");
+				csvInformation.add(value);
+			}
+
+			preparedStatement.close();
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		
+		return csvInformation;
+	}
 }

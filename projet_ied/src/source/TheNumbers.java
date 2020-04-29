@@ -10,12 +10,16 @@ import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
 
+import jdbc.Queries;
+
 
 public class TheNumbers {
 	// https://www.the-numbers.com/market/<year>/genre/<genre>
 	// genre = Adventure, Comedy, Drama, Action, Thriller-or-Suspense, Romantic-Comedy
 	// year = 2000 to 2015
 	private ArrayList<String> genres = new ArrayList<String>();
+	private String filepath;
+	private String generatedFilename;
 	
 	public TheNumbers() {
 		genres.add("Adventure");
@@ -24,6 +28,10 @@ public class TheNumbers {
 		genres.add("Action");
 		genres.add("Thriller-or-Suspense");
 		genres.add("Romantic-Comedy");
+		
+		ArrayList<String> csvInformation = Queries.getCsvInformation();
+		filepath = csvInformation.get(1);
+		generatedFilename = csvInformation.get(2);
 	}
 	
 	public void generateMoviesInformation() {
@@ -88,9 +96,8 @@ public class TheNumbers {
 	}
 	
 	private void createCsvFile(String genre, ArrayList<ArrayList<String>> moviesInformation) {
-		//TODO récup en BDD
-		String fileName = "movies_"+genre+".csv";
-		String filepath = "C:\\Users\\Anne-Sophie\\Desktop\\Cours M1\\IED - Intégration et Entrepôts de Données\\Projet\\";
+		String[] tabFilename = {generatedFilename.substring(0, generatedFilename.indexOf(".*\\")), generatedFilename.substring(generatedFilename.indexOf(".*\\")+3)};
+		String fileName = tabFilename[0]+genre+tabFilename[1];
 		
 		File file = new File(filepath+fileName);
 		try {
@@ -116,15 +123,14 @@ public class TheNumbers {
 	}
 	
 	private boolean areFilesGenerated() {
-		//TODO récup en BDD
-		String filepath = "C:\\Users\\Anne-Sophie\\Desktop\\Cours M1\\IED - Intégration et Entrepôts de Données\\Projet\\";
+		String[] tabFilename = {generatedFilename.substring(0, generatedFilename.indexOf(".*\\")), generatedFilename.substring(generatedFilename.indexOf(".*\\")+3)};
 	    File dir = new File(filepath);
 	    File[] listOfFiles = dir.listFiles();
 
 	    for(int i=0 ; i<listOfFiles.length ; i++) {
 	        if(listOfFiles[i].isFile()) {
 	            String currentFile = listOfFiles[i].getName();
-	            if (currentFile.startsWith("movies_") && currentFile.endsWith(".csv")) {
+	            if (currentFile.startsWith(tabFilename[0]) && currentFile.endsWith(tabFilename[1])) {
 	                return true;
 	            }
 	        }

@@ -4,5 +4,19 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/jsoup-1.13.1.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="lib/crypto-utils.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/importcsvfile_1_0.jar"/>
+	<classpathentry kind="lib" path="lib/importgeneratedcsvfiles_1_0.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta-oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.12.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-core-2.12.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-slf4j-impl-2.12.1.jar"/>
+	<classpathentry kind="lib" path="lib/main_1_0.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.30-bin.jar"/>
+	<classpathentry kind="lib" path="lib/routines.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/talend_file_enhanced_20070724.jar"/>
+	<classpathentry kind="lib" path="lib/talendcsv.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,15 +6,20 @@ import java.util.Scanner;
 import data.Film;
 import jdbc.Queries;
 import source.TheNumbers;
+import projet.main_1_0.main;
 
 public class TestConsole {
 
 	public static void main(String[] args) {
+		//Generate files from the-numbers.com
 		TheNumbers tn = new TheNumbers();
 		tn.generateMoviesInformation();
-		//TODO appel Talend
+
+		//Fill database from Talend Jobs
+		main talendJob = new main();
+		talendJob.runJob(new String[]{});
 		
-		
+		//Ask user/do queries
 		Scanner scanner = new Scanner(System.in);
 		String search;
 		ArrayList<Film> films = new ArrayList<Film>();
