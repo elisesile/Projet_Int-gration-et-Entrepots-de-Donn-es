@@ -5,10 +5,16 @@ import java.util.Scanner;
 
 import data.Film;
 import jdbc.Queries;
+import source.TheNumbers;
 
 public class TestConsole {
 
 	public static void main(String[] args) {
+		TheNumbers tn = new TheNumbers();
+		tn.generateMoviesInformation();
+		//TODO appel Talend
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		String search;
 		ArrayList<Film> films = new ArrayList<Film>();
