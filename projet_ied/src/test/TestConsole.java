@@ -1,6 +1,10 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import data.Film;
+import jdbc.Queries;
 
 public class TestConsole {
 
@@ -11,7 +15,15 @@ public class TestConsole {
 		String name = search.substring(search.indexOf("|")+1);
 
 		//TODO appels méthodes + utilisation de type et name
+		//types: 1=title / 2=actor 
 		System.out.println("You entered: " + type + " - " + name);
+		
+		ArrayList<Film> films = new ArrayList<Film>();
+		films = Queries.getFilms(name, true);
+		
+		for(Film film : films) {
+			System.out.println(film.getFilmInformationForFilm());
+		}
 	}
 	
 	private static String readInputs() {
