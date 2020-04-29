@@ -15,17 +15,6 @@ public class Film {
 	private String producteur;
 	private String acteurs;
 	
-	public Film(String titre, Date dateSortie, String genre, String distributeur, Double budget,
-			Double revenusEtatsUnis, Double revenusMondiaux) {
-		this.titre = titre;
-		this.dateSortie = dateSortie;
-		this.genre = genre;
-		this.distributeur = distributeur;
-		this.budget = budget;
-		this.revenusEtatsUnis = revenusEtatsUnis;
-		this.revenusMondiaux = revenusMondiaux;
-	}
-	
 	public Film(String titre, String realisateur, String producteur, String acteur) {
 		this.titre = titre;
 		this.realisateur = realisateur;
