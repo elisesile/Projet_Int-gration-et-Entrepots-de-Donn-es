@@ -9,9 +9,11 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 
+import data.Film;
+
 public class OmdbClient {
 
-    public String getPlotByTitle(String titre){
+    public Film getPlotByTitle(String titre, Film film){
     	
     	//Prend en entree le titre d'un film 
     	//Renvoi son plot 
@@ -28,7 +30,9 @@ public class OmdbClient {
         	XPath xpath = xfabrique.newXPath();
         
         	XPathExpression exp = xpath.compile(requete);
-        	return exp.evaluate(document, XPathConstants.STRING).toString();
+        	film.setPlot(exp.evaluate(document, XPathConstants.STRING).toString());
+        	
+        	return film;
         	
         } catch(Exception e){
         	System.out.println(e.getMessage());
