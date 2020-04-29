@@ -9,31 +9,36 @@ import jdbc.Queries;
 public class TestConsole {
 
 	public static void main(String[] args) {
-		String search = readInputs();
-
-		String type = search.substring(0, search.indexOf("|"));
-		String name = search.substring(search.indexOf("|")+1);
-
-		//TODO appels méthodes + utilisation de type et name
-		//types: 1=title / 2=actor 
-		System.out.println("You entered: " + type + " - " + name);
+		Scanner scanner = new Scanner(System.in);
+		String search;
+		do {
+			search = readInputs(scanner);
+	
+			if(!search.equals("q")) {
+				String type = search.substring(0, search.indexOf("|"));
+				String name = search.substring(search.indexOf("|")+1);
 		
-		ArrayList<Film> films = new ArrayList<Film>();
-		films = Queries.getFilms(name, true);
-		
-		for(Film film : films) {
-			System.out.println(film.getFilmInformationForFilm());
-		}
+				//TODO appels méthodes + utilisation de type et name
+				//types: 1=title / 2=actor 
+				System.out.println("You entered: + name);
+				
+				ArrayList<Film> films = new ArrayList<Film>();
+				films = Queries.getFilms(name, true);
+				
+				for(Film film : films) {
+					System.out.println(film.getFilmInformationForFilm());
+				}
+			}
+		}while(!search.equals("q"));
+		scanner.close();
 	}
 	
-	private static String readInputs() {
-        Scanner scanner = new Scanner(System.in);
+	private static String readInputs(Scanner scanner) {
         int resultType = 0;
         String result;
         
         do {
-        	System.out.println("Search by movie 'title' or by 'actor' name?");
-    		System.out.println("Please type 'title' or 'actor' and press Enter. Then enter the name you want to search.");
+        	System.out.println("\n\tSearch by movie 'title' or by 'actor' name?\n\tPlease type 'title' or 'actor' and press Enter. Then enter the name you want to search.");
         	
         	String s = scanner.nextLine();
         	resultType = 0;
@@ -42,6 +47,9 @@ public class TestConsole {
             }
             else if(s.equals("actor")) {
             	resultType = 2;
+            }
+            else if(s.equals("q")) {
+            	return "q";
             }
             
             String name = scanner.nextLine();
@@ -52,11 +60,10 @@ public class TestConsole {
             result = sb.toString();
             
             if(resultType == 0) {
-            	System.out.println("Error: please enter an acceptable value :(");
+            	System.out.println("\tError: please enter an acceptable value :(");
             }
         }while(resultType == 0);
         
-        scanner.close();
         return result;
 	}
 
