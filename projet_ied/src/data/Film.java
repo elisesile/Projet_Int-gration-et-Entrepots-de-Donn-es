@@ -21,6 +21,10 @@ public class Film {
 		this.producteur = producteur;
 		this.acteurs = acteur;
 	}
+	
+	public Film(String titre) {
+		this.titre = titre;
+	}
 
 	public String getTitre() {
 		return titre;
