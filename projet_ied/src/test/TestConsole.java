@@ -11,22 +11,37 @@ public class TestConsole {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String search;
+		ArrayList<Film> films = new ArrayList<Film>();
+		
 		do {
 			search = readInputs(scanner);
 	
 			if(!search.equals("q")) {
 				String type = search.substring(0, search.indexOf("|"));
 				String name = search.substring(search.indexOf("|")+1);
-		
-				//TODO appels méthodes + utilisation de type et name
+				films.clear();
+				
+				System.out.println("You entered:" + name);
 				//types: 1=title / 2=actor 
-				System.out.println("You entered: + name);
-				
-				ArrayList<Film> films = new ArrayList<Film>();
-				films = Queries.getFilms(name, true);
-				
-				for(Film film : films) {
-					System.out.println(film.getFilmInformationForFilm());
+				//TODO appels méthodes + utilisation de type et name
+				if(Integer.parseInt(type) == 1) {
+					//search by title
+					//TODO
+					films = Queries.getFilms(name, true);
+					
+					
+					for(Film film : films) {
+						System.out.println(film.getFilmInformationForFilm());
+					}
+				}
+				else if(Integer.parseInt(type) == 2){
+					//search by actor
+					//TODO
+					
+					
+					for(Film film : films) {
+						System.out.println(film.getFilmInformationForActor());
+					}
 				}
 			}
 		}while(!search.equals("q"));
