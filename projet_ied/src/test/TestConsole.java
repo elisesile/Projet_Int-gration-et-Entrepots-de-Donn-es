@@ -33,7 +33,7 @@ public class TestConsole {
 				if(Integer.parseInt(type) == 1) {
 					//search by title
 					//TODO
-					films = Queries.getFilms(name, true);
+					films = Queries.getFilms(name);
 					
 					
 					for(Film film : films) {
@@ -74,6 +74,9 @@ public class TestConsole {
             }
             
             String name = scanner.nextLine();
+            if(name.equals("q")) {
+            	return "q";
+            }
             StringBuffer sb = new StringBuffer();
             sb.append(resultType);
             sb.append("|");

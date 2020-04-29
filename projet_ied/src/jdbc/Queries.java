@@ -11,7 +11,7 @@ import jdbc.JdbcConnection;
 import data.Film;
 
 public class Queries {
-	public static ArrayList<Film> getFilms(String title, boolean allInformation) {
+	public static ArrayList<Film> getFilms(String title) {
 		String regex = "^";
 		for(int i=0 ; i<title.length() ; i++) {
 			regex += "("+title.toLowerCase().charAt(i)+"|"+title.toUpperCase().charAt(i)+")";
@@ -33,15 +33,9 @@ public class Queries {
 				Date dateSortie = result.getDate("date_sortie");
 				String genre = result.getString("genre");
 				String distributeur = result.getString("distributeur");
-				Double budget = null;
-				Double revenusEtatsUnis = null;
-				Double revenusMondiaux = null;
-				
-				if(allInformation == true) {
-					budget = result.getDouble("budget");
-					revenusEtatsUnis = result.getDouble("revenus_etats_unis");
-					revenusMondiaux = result.getDouble("revenus_mondiaux");
-				}
+				Double budget = result.getDouble("budget");
+				Double revenusEtatsUnis = result.getDouble("revenus_etats_unis");
+				Double revenusMondiaux = result.getDouble("revenus_mondiaux");
 				
 				Film film = new Film(titre, dateSortie, genre, distributeur, budget, revenusEtatsUnis, revenusMondiaux);
 				

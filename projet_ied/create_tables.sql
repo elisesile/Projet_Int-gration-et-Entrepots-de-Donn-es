@@ -26,6 +26,7 @@ CHARACTER SET utf8 COLLATE utf8_bin
 INSERT INTO talend_info VALUES 
 ('CSV_FILEPATH', 'C:\\Users\\Anne-Sophie\\Desktop\\Cours M1\\IED - Intégration et Entrepôts de Données\\Projet\\'),
 ('CSV_FILENAME', 'movieBudgets.csv'),
+('CSV_GENERATED_FILENAME', 'movies_.*\\.csv'),
 ('DB_HOST', 'localhost'),
 ('DB_PORT', '3306'),
 ('DB_USER', 'root'),
