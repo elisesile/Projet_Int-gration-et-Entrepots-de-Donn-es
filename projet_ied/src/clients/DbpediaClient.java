@@ -10,9 +10,13 @@ import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 import java.util.*;
 
-public class dbpediaclient {
+public class DbpediaClient {
 
 	public ArrayList<String> searchByTitle(String title) {
+		
+		//Prend le titre d'un film en entrée
+		//Renvoi le triplet Acteurs - Realisateur - Producteur
+		//Chaque valeur est un String, si il y a plusieurs noms ils sont séparés par des virgules
 		
         String queryStr = "select ?real (group_concat(DISTINCT ?prod;SEPARATOR=\",\") as ?prods) (group_concat(DISTINCT ?acteur;SEPARATOR=\",\") as ?acteurs) WHERE { ?film a <http://dbpedia.org/ontology/Film>; <http://xmlns.com/foaf/0.1/name> \""+title+"\"@en; <http://dbpedia.org/ontology/director> ?real; <http://dbpedia.org/ontology/producer> ?prod; <http://dbpedia.org/ontology/starring> ?acteur.}GROUP BY ?real";
         Query query = QueryFactory.create(queryStr);
@@ -45,7 +49,12 @@ public class dbpediaclient {
         
 	}
 	
-	public ArrayList<ArrayList<String>> searchByActor(String actor) {
+	public static ArrayList<ArrayList<String>> searchByActor(String actor) {
+		
+		//Prend en entrée le nom d'un acteur
+		//Renvoi des triplets Titre - Realisateur - Producteur de tous les films dans lesquels il a joué
+		//Chaque valeur est un string
+		
 		
         String queryStr = "SELECT ?titre (group_concat(DISTINCT ?real;SEPARATOR=\",\") as ?reals) (group_concat( DISTINCT ?prod;SEPARATOR=\",\") as ?prods) WHERE { ?acteur a <http://dbpedia.org/ontology/Person>; <http://xmlns.com/foaf/0.1/name> \""+actor+"\"@en. ?film a <http://dbpedia.org/ontology/Film>; <http://dbpedia.org/ontology/starring> ?acteur; <http://xmlns.com/foaf/0.1/name> ?titre; <http://dbpedia.org/ontology/director> ?real; <http://dbpedia.org/ontology/producer> ?prod. }Group by ?titre";
         Query query = QueryFactory.create(queryStr);
