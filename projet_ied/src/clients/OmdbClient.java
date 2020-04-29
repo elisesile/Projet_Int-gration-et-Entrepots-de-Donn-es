@@ -9,11 +9,15 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 
-public class omdbclient {
+public class OmdbClient {
 
-    public String XPath(String titre, String requete){
+    public String getPlotByTitle(String titre){
+    	
+    	//Prend en entrée le titre d'un film 
+    	//Renvoi son plot 
 
     	String uri = "http://www.omdbapi.com/?apikey=5153048a&type=movie&plot=full&r=xml&t="+titre;
+    	String requete = "/root/movie/@plot";
     	
         try{
 			DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
