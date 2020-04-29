@@ -63,7 +63,7 @@ public class DbpediaClient {
         
 	}
 	
-	public static ArrayList<ArrayList<String>> searchByActor(String actor) {
+	public static ArrayList<Film> searchByActor(String actor) {
 		
 		//Prend en entree le nom d'un acteur
 		//Renvoi des triplets Titre - Realisateur - Producteur de tous les films dans lesquels il a joue
@@ -72,10 +72,11 @@ public class DbpediaClient {
 		
         String queryStr = "SELECT ?titre (group_concat(DISTINCT ?real;SEPARATOR=\",\") as ?reals) (group_concat( DISTINCT ?prod;SEPARATOR=\",\") as ?prods) WHERE { ?acteur a <http://dbpedia.org/ontology/Person>; <http://xmlns.com/foaf/0.1/name> \""+actor+"\"@en. ?film a <http://dbpedia.org/ontology/Film>; <http://dbpedia.org/ontology/starring> ?acteur; <http://xmlns.com/foaf/0.1/name> ?titre; <http://dbpedia.org/ontology/director> ?real; <http://dbpedia.org/ontology/producer> ?prod. }Group by ?titre";
         Query query = QueryFactory.create(queryStr);
-        ArrayList<ArrayList<String>> all = new ArrayList<ArrayList<String>>();
-        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<Film> all = new ArrayList<Film>();
         QuerySolution qs = null;
         String titre = null;
+        String real = null;
+        String prod = null;
         String chng = null;
         String [] teemp = null ;
         
@@ -87,26 +88,27 @@ public class DbpediaClient {
             while (rs.hasNext()) {
             	qs = rs.nextSolution();
             	titre = qs.get("titre").toString();
-            	temp.add(titre.substring(0,titre.indexOf("@")));
+            	titre = titre.substring(0,titre.indexOf("@"));
             	
             	teemp = qs.get("reals").toString().split(",");
             	for (String value : teemp) {
             		chng+= value.substring(value.lastIndexOf("/"))+",";
             	}
-            	temp.add(chng.substring(0,chng.lastIndexOf(",")));
+            	real = chng.substring(0,chng.lastIndexOf(","));
             	
             	teemp = qs.get("prods").toString().split(",");
             	chng = null;
             	for (String value : teemp) {
             		chng+= value.substring(value.lastIndexOf("/"))+",";
             	}
-            	temp.add(chng.substring(0,chng.lastIndexOf(",")));
+            	prod = chng.substring(0,chng.lastIndexOf(","));
             	
-            	all.add(temp);
+            	Film f = new Film(titre,real,prod,actor);
+            	
+            	all.add(f);
             	
             	chng = null;
             	teemp = null;
-            	temp.clear();
             }
         	
         	return all;
