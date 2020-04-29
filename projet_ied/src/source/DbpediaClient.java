@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DbpediaClient {
 
-	public Film searchByTitle(String title, Film film) {
+	public static Film searchByTitle(String title, Film film) {
 		
 		//Prend le titre d'un film en entree
 		//Renvoi le triplet Acteurs - Realisateur - Producteur
