@@ -10,6 +10,10 @@ public class Film {
 	private Double budget;
 	private Double revenusEtatsUnis;
 	private Double revenusMondiaux;
+	private String plot;
+	private String realisateur;
+	private String producteur;
+	private String acteurs;
 	
 	public Film(String titre, Date dateSortie, String genre, String distributeur, Double budget,
 			Double revenusEtatsUnis, Double revenusMondiaux) {
@@ -20,6 +24,13 @@ public class Film {
 		this.budget = budget;
 		this.revenusEtatsUnis = revenusEtatsUnis;
 		this.revenusMondiaux = revenusMondiaux;
+	}
+	
+	public Film(String titre, String realisateur, String producteur, String acteur) {
+		this.titre = titre;
+		this.realisateur = realisateur;
+		this.producteur = producteur;
+		this.acteurs = acteur;
 	}
 
 	public String getTitre() {
@@ -76,6 +87,38 @@ public class Film {
 
 	public void setRevenusMondiaux(Double revenusMondiaux) {
 		this.revenusMondiaux = revenusMondiaux;
+	}
+
+	public String getRealisateur() {
+		return realisateur;
+	}
+
+	public void setRealisateur(String realisateur) {
+		this.realisateur = realisateur;
+	}
+
+	public String getProducteur() {
+		return producteur;
+	}
+
+	public void setProducteur(String producteur) {
+		this.producteur = producteur;
+	}
+
+	public String getActeurs() {
+		return acteurs;
+	}
+
+	public void setActeurs(String acteurs) {
+		this.acteurs = acteurs;
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
+	public void setPlot(String plot) {
+		this.plot = plot;
 	}
 
 	@Override
