@@ -131,10 +131,10 @@ public class Film {
 	public String getFilmInformationForFilm() {
 		return "dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
 				+ distributeur + ", budget=" + budget.intValue() + ", revenusEtatsUnis=" + revenusEtatsUnis.intValue() + ", revenusMondiaux="
-				+ revenusMondiaux.intValue();
+				+ revenusMondiaux.intValue() + ", realisateur=" + realisateur + ", resume=" + plot + ", acteurs=" + acteurs;
 	}
 	public String getFilmInformationForActor() {
 		return "titre=" + titre + ", dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
-				+ distributeur;
+				+ distributeur + ", realisateur=" + realisateur + ", producteur=" + producteur;
 	}
 }

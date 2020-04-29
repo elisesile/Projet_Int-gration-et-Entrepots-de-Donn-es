@@ -19,7 +19,7 @@ public class TestConsole {
 		main talendJob = new main();
 		talendJob.runJob(new String[]{});
 		
-		//Ask user/do queries
+		//Ask user
 		Scanner scanner = new Scanner(System.in);
 		String search;
 		ArrayList<Film> films = new ArrayList<Film>();

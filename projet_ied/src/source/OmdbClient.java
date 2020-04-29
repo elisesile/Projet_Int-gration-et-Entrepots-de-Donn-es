@@ -1,4 +1,4 @@
-package clients;
+package source;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +13,7 @@ public class OmdbClient {
 
     public String getPlotByTitle(String titre){
     	
-    	//Prend en entrée le titre d'un film 
+    	//Prend en entree le titre d'un film 
     	//Renvoi son plot 
 
     	String uri = "http://www.omdbapi.com/?apikey=5153048a&type=movie&plot=full&r=xml&t="+titre;
