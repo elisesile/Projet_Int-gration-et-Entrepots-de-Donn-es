@@ -3,11 +3,13 @@ package source;
 import org.apache.jena.query.*;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
+import data.Film;
+
 import java.util.*;
 
 public class DbpediaClient {
 
-	public ArrayList<String> searchByTitle(String title) {
+	public Film searchByTitle(String title, Film film) {
 		
 		//Prend le titre d'un film en entree
 		//Renvoi le triplet Acteurs - Realisateur - Producteur
@@ -15,8 +17,8 @@ public class DbpediaClient {
 		
         String queryStr = "select ?real (group_concat(DISTINCT ?prod;SEPARATOR=\",\") as ?prods) (group_concat(DISTINCT ?acteur;SEPARATOR=\",\") as ?acteurs) WHERE { ?film a <http://dbpedia.org/ontology/Film>; <http://xmlns.com/foaf/0.1/name> \""+title+"\"@en; <http://dbpedia.org/ontology/director> ?real; <http://dbpedia.org/ontology/producer> ?prod; <http://dbpedia.org/ontology/starring> ?acteur.}GROUP BY ?real";
         Query query = QueryFactory.create(queryStr);
-        ArrayList<String> all = new ArrayList<String>();
         QuerySolution qs = null;
+        
         String real = null;
         String temp = null;
 
@@ -37,18 +39,20 @@ public class DbpediaClient {
             for (String value : sep) {
             	temp+= value.substring(value.lastIndexOf("/"))+",";
             }
-            all.add(temp.substring(0,temp.lastIndexOf(",")));
             
-            all.add(real.substring(0,real.lastIndexOf(",")));
+            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")));
+            
+            film.setRealisateur(real.substring(0,real.lastIndexOf(",")));
         	
             temp = null;
             sep = qs.get("prods").toString().split(",");
             for (String value : sep ) {
             	temp += value.substring(value.lastIndexOf("/"))+",";
             }
-            all.add(temp.substring(0,temp.lastIndexOf(",")));
-        	
-        	return all;
+            
+            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")));
+            
+        	return film;
         
             
         }catch (Exception e) {
@@ -72,6 +76,9 @@ public class DbpediaClient {
         ArrayList<String> temp = new ArrayList<String>();
         QuerySolution qs = null;
         String titre = null;
+        String chng = null;
+        String [] teemp = null ;
+        
 
         try ( QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query) ) {
             ((QueryEngineHTTP)qexec).addParam("timeout", "10000") ;
@@ -81,9 +88,24 @@ public class DbpediaClient {
             	qs = rs.nextSolution();
             	titre = qs.get("titre").toString();
             	temp.add(titre.substring(0,titre.indexOf("@")));
-            	temp.add(qs.get("reals").toString());
-            	temp.add(qs.get("prods").toString());
+            	
+            	teemp = qs.get("reals").toString().split(",");
+            	for (String value : teemp) {
+            		chng+= value.substring(value.lastIndexOf("/"))+",";
+            	}
+            	temp.add(chng.substring(0,chng.lastIndexOf(",")));
+            	
+            	teemp = qs.get("prods").toString().split(",");
+            	chng = null;
+            	for (String value : teemp) {
+            		chng+= value.substring(value.lastIndexOf("/"))+",";
+            	}
+            	temp.add(chng.substring(0,chng.lastIndexOf(",")));
+            	
             	all.add(temp);
+            	
+            	chng = null;
+            	teemp = null;
             	temp.clear();
             }
         	
