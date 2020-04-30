@@ -30,7 +30,12 @@ public class OmdbClient {
         	XPath xpath = xfabrique.newXPath();
         
         	XPathExpression exp = xpath.compile(requete);
-        	film.setPlot(exp.evaluate(document, XPathConstants.STRING).toString());
+        	
+        	if(exp.evaluate(document, XPathConstants.STRING).toString().length() > 5) {
+        		film.setPlot(exp.evaluate(document, XPathConstants.STRING).toString());
+        	}else {
+        		film.setPlot(null);
+        	}
         	
         	return film;
         	
