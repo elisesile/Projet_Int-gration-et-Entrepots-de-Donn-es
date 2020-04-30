@@ -113,14 +113,15 @@ public class Film {
 	public void setPlot(String plot) {
 		this.plot = plot;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Film [titre=" + titre + ", dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
-				+ distributeur + ", budget=" + budget.intValue() + ", revenusEtatsUnis=" + revenusEtatsUnis.intValue() + ", revenusMondiaux="
-				+ revenusMondiaux.intValue() + "]";
+				+ distributeur + ", budget=" + budget + ", revenusEtatsUnis=" + revenusEtatsUnis + ", revenusMondiaux="
+				+ revenusMondiaux + ", plot=" + plot + ", realisateur=" + realisateur + ", producteur=" + producteur
+				+ ", acteurs=" + acteurs + "]";
 	}
-	
+
 	public String getFilmInformationForFilm() {
 		return "dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
 				+ distributeur + ", budget=" + budget.intValue() + ", revenusEtatsUnis=" + revenusEtatsUnis.intValue() + ", revenusMondiaux="

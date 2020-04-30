@@ -12,6 +12,10 @@ public class TestConsole {
 	//Ed Wood
 	//Avatar
 	//Man of Steel
+	
+	//Sean Penn
+	//Dev Patel
+	//Mel Gibson
 
 	public static void main(String[] args) {
 		//Generate files from the-numbers.com
@@ -37,12 +41,10 @@ public class TestConsole {
 				
 				System.out.println("You entered:" + name);
 				//types: 1=title / 2=actor 
-				//TODO appels méthodes + utilisation de type et name
+
 				if(Integer.parseInt(type) == 1) {
 					//search by title
-					//TODO
-					
-					films.add(Mediator.searchByTitle(name));
+					films.add(Mediator.getFilmFromTitle(name));
 					
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForFilm());
@@ -50,8 +52,7 @@ public class TestConsole {
 				}
 				else if(Integer.parseInt(type) == 2){
 					//search by actor
-					//TODO
-					films = Mediator.searchByActor(name);
+					films = Mediator.getFilmsFromActor(name);
 					
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForActor());

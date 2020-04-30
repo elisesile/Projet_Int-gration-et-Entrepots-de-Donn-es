@@ -8,28 +8,21 @@ import jdbc.Queries;
 
 public class Mediator{
 
-	public ArrayList<Film> getFilmFromActor(String actor){
-		
+	public static ArrayList<Film> getFilmsFromActor(String actor){
 		ArrayList<Film> films = DbpediaClient.searchByActor(actor);
-//		ArrayList<String> strings = new ArrayList<String>();
-		films = Queries.getFilms(films);
-//		for (Film film : films) {
-//			film = OmdbClient.getPlotByTitle(film); //A enlever éventuellement, je me sius aperçue trop tard que j'en avais fait trop :) 
-//			strings.add(film.getFilmInformationForFilm());
-//		}
-		
+		for (Film film : films) {
+			film = Queries.getFilm(film);
+			film = OmdbClient.getPlotByTitle(film);
+		}
 		return films;
-		
 	}
 	
-	public Film getFilmFromTitle(String title) {
-		
+	public static Film getFilmFromTitle(String title) {
 		Film film = new Film(title);
 		film = OmdbClient.getPlotByTitle(film);
-		film = DbpediaClient.searchByTitle(title,film);
+		film = DbpediaClient.searchByTitle(film);
 		film = Queries.getFilm(film);
 		return film;
-		
 	}
 	
 }

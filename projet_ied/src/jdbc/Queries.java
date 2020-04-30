@@ -10,74 +10,36 @@ import jdbc.JdbcConnection;
 import data.Film;
 
 public class Queries {
-	public static ArrayList<Film> getFilms(ArrayList<Film> films) {
-		for(int i=0 ; i<films.size() ; i++) {
-			String title = films.get(i).getTitre();
-			String regex = "^";
-			for(int j=0 ; j<title.length() ; j++) {
-				regex += "("+title.toLowerCase().charAt(j)+"|"+title.toUpperCase().charAt(j)+")";
-			}
-			
-			try {
-				String getFilmsQuery = "SELECT titre, date_sortie, genre, distributeur, budget, revenus_etats_unis, revenus_mondiaux FROM film WHERE titre REGEXP ?;";
-	
-				Connection dbConnection = JdbcConnection.getConnection();
-				PreparedStatement preparedStatement = dbConnection.prepareStatement(getFilmsQuery);
-	
-				preparedStatement.setString(1, regex);
-	
-				ResultSet result = preparedStatement.executeQuery();
-	
-				while (result.next()) {
-					films.get(i).setDateSortie(result.getDate("date_sortie"));
-					films.get(i).setGenre(result.getString("genre"));
-					films.get(i).setDistributeur(result.getString("distributeur"));
-					films.get(i).setBudget(result.getDouble("budget"));
-					films.get(i).setRevenusEtatsUnis(result.getDouble("revenus_etats_unis"));
-					films.get(i).setRevenusMondiaux(result.getDouble("revenus_mondiaux"));
-				}
-	
-				preparedStatement.close();
-			} catch (SQLException se) {
-				System.err.println(se.getMessage());
-			}
+	public static Film getFilm(Film film) {
+		String title = film.getTitre();
+		String regex = "^";
+		for(int j=0 ; j<title.length() ; j++) {
+			regex += "("+title.toLowerCase().charAt(j)+"|"+title.toUpperCase().charAt(j)+")";
 		}
 		
-		return films;
-	}
-	
-	public static Film getFilm(Film film) {
-		
-			String title = film.getTitre();
-			String regex = "^";
-			for(int j=0 ; j<title.length() ; j++) {
-				regex += "("+title.toLowerCase().charAt(j)+"|"+title.toUpperCase().charAt(j)+")";
+		try {
+			String getFilmsQuery = "SELECT titre, date_sortie, genre, distributeur, budget, revenus_etats_unis, revenus_mondiaux FROM film WHERE titre REGEXP ?;";
+
+			Connection dbConnection = JdbcConnection.getConnection();
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(getFilmsQuery);
+
+			preparedStatement.setString(1, regex);
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				film.setDateSortie(result.getDate("date_sortie"));
+				film.setGenre(result.getString("genre"));
+				film.setDistributeur(result.getString("distributeur"));
+				film.setBudget(result.getDouble("budget"));
+				film.setRevenusEtatsUnis(result.getDouble("revenus_etats_unis"));
+				film.setRevenusMondiaux(result.getDouble("revenus_mondiaux"));
 			}
-			
-			try {
-				String getFilmsQuery = "SELECT titre, date_sortie, genre, distributeur, budget, revenus_etats_unis, revenus_mondiaux FROM film WHERE titre REGEXP ?;";
-	
-				Connection dbConnection = JdbcConnection.getConnection();
-				PreparedStatement preparedStatement = dbConnection.prepareStatement(getFilmsQuery);
-	
-				preparedStatement.setString(1, regex);
-	
-				ResultSet result = preparedStatement.executeQuery();
-	
-				while (result.next()) {
-					film.setDateSortie(result.getDate("date_sortie"));
-					film.setGenre(result.getString("genre"));
-					film.setDistributeur(result.getString("distributeur"));
-					film.setBudget(result.getDouble("budget"));
-					film.setRevenusEtatsUnis(result.getDouble("revenus_etats_unis"));
-					film.setRevenusMondiaux(result.getDouble("revenus_mondiaux"));
-				}
-	
-				preparedStatement.close();
-			} catch (SQLException se) {
-				System.err.println(se.getMessage());
-			}
-		
+
+			preparedStatement.close();
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
 		return film;
 	}
 	

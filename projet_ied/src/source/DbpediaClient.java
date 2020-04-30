@@ -9,12 +9,11 @@ import java.util.*;
 
 public class DbpediaClient {
 
-	public static Film searchByTitle(String title, Film film) {
-		
+	public static Film searchByTitle(Film film) {
 		//Prend le titre d'un film en entree
 		//Renvoi le triplet Acteurs - Realisateur - Producteur
 		//Chaque valeur est un String, si il y a plusieurs noms ils sont separes par des virgules
-		
+		String title = film.getTitre();
         String queryStr = "select ?real (group_concat(DISTINCT ?prod;SEPARATOR=\",\") as ?prods) (group_concat(DISTINCT ?acteur;SEPARATOR=\",\") as ?acteurs) WHERE { ?film a <http://dbpedia.org/ontology/Film>; <http://xmlns.com/foaf/0.1/name> \""+title+"\"@en; <http://dbpedia.org/ontology/director> ?real; <http://dbpedia.org/ontology/producer> ?prod; <http://dbpedia.org/ontology/starring> ?acteur.}GROUP BY ?real";
         Query query = QueryFactory.create(queryStr);
         QuerySolution qs = null;
