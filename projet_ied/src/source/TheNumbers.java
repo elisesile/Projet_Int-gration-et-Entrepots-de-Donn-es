@@ -109,7 +109,7 @@ public class TheNumbers {
 		try {
 			FileWriter csvWriter = new FileWriter(filepath+fileName);
 		
-			csvWriter.append("titre,genre,distributeur\n");
+			csvWriter.append("titre\tgenre\tdistributeur\n");
 			for(ArrayList<String> information : moviesInformation) {
 			    csvWriter.append(String.join("\t", information));
 			    csvWriter.append("\n");

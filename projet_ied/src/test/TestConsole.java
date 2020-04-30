@@ -54,9 +54,7 @@ public class TestConsole {
 					//search by title
 					films.add(Mediator.getFilmFromTitle(name));
 					
-					
 					for(Film film : films) {
-						
 						if (film.getActeurs()=="null" && film.getDateSortie()==null && film.getGenre()==null && film.getPlot()==null && film.getRealisateur()=="null" && film.getProducteur()=="null" ) {
 							System.out.println("Sorry, we have no information about a movie with this title.");
 						}else {
@@ -73,7 +71,7 @@ public class TestConsole {
 						System.out.println(" +  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -"+"\n | "+film.getFilmInformationForActor());
 					}
 					if (films.isEmpty()) {
-						System.out.println("Sorry, we have no information about this person.");
+						System.out.println("Sorry, we have no information about this actor.");
 					}
 				}
 			}
@@ -86,7 +84,7 @@ public class TestConsole {
         String result;
         
         do {
-        	System.out.println("\n\tSearch by movie 'title' or by 'actor' name?\n\tPlease type 'title' or 'actor' and press Enter. Then enter the name you want to search.");
+        	System.out.println("\n\tSearch by movie 'title' or by 'actor' name (enter 'q' to quit)?\n\tPlease type 'title' or 'actor' and press Enter. Then enter the name you want to search.");
         	
         	String s = scanner.nextLine();
         	resultType = 0;
