@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import data.Film;
+import jdbc.Queries;
 import source.TheNumbers;
 import projet.main_1_0.main;
 import mediator.Mediator;
@@ -23,10 +24,15 @@ public class TestConsole {
 		TheNumbers tn = new TheNumbers();
 		tn.generateMoviesInformation();
 
-		//Fill database from Talend Jobs
-		System.out.println("Add content to database...");
-		main talendJob = new main();
-		talendJob.runJob(new String[]{});
+		//Fill database with Talend Jobs
+		if(Queries.isFilmTableEmpty()) {
+			System.out.println("Add content to database by running Talend jobs...");
+			main talendJob = new main();
+			talendJob.runJob(new String[]{});
+		}
+		else {
+			System.out.println("Database is not empty, there is no need to run Talend jobs.");
+		}
 		
 		//Ask user
 		Scanner scanner = new Scanner(System.in);

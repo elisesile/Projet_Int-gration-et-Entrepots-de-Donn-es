@@ -67,4 +67,28 @@ public class Queries {
 		
 		return csvInformation;
 	}
+	
+	public static boolean isFilmTableEmpty() {
+		boolean isEmpty = true;
+		try {
+			String getCsvInformationQuery = "SELECT COUNT(id) FROM film;";
+
+			Connection dbConnection = JdbcConnection.getConnection();
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(getCsvInformationQuery);
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				int count = result.getInt("COUNT(id)");
+				if(count > 0) {
+					isEmpty = false;
+				}
+			}
+
+			preparedStatement.close();
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		
+		return isEmpty;
+	}
 }
