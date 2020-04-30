@@ -19,8 +19,9 @@ CREATE TABLE talend_info (
 	`key` VARCHAR(255) NOT NULL UNIQUE,
 	`value` VARCHAR(255) NOT NULL
 )ENGINE=InnoDB,
-CHARACTER SET utf8 COLLATE utf8_bin
+CHARACTER SET utf8 COLLATE utf8_bin;
 
+USE ied_projet;
 
 
 INSERT INTO talend_info VALUES 
