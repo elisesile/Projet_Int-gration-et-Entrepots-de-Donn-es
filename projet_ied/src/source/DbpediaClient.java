@@ -38,7 +38,7 @@ public class DbpediaClient {
 	            sep = qs.get("acteurs").toString().split(",");
 	            temp = "";
 	            for (String value : sep) {
-	            	temp+= value.substring(value.lastIndexOf("/"))+",";
+	            	temp+= value.substring(value.lastIndexOf("/")+1)+", ";
 	            }
 	            
 	            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")).replace("_", " "));
@@ -48,7 +48,7 @@ public class DbpediaClient {
 	            temp = "";
 	            sep = qs.get("prods").toString().split(",");
 	            for (String value : sep ) {
-	            	temp += value.substring(value.lastIndexOf("/"))+",";
+	            	temp += value.substring(value.lastIndexOf("/")+1)+",";
 	            }
 	            
 	            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")).replace("_", " "));
