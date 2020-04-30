@@ -6,6 +6,7 @@ import java.util.Scanner;
 import data.Film;
 import source.TheNumbers;
 import projet.main_1_0.main;
+import mediator.Mediator;
 
 public class TestConsole {
 	//Ed Wood
@@ -41,6 +42,7 @@ public class TestConsole {
 					//search by title
 					//TODO
 					
+					films.add(Mediator.searchByTitle(name));
 					
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForFilm());
@@ -49,7 +51,7 @@ public class TestConsole {
 				else if(Integer.parseInt(type) == 2){
 					//search by actor
 					//TODO
-					
+					films = Mediator.searchByActor(name);
 					
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForActor());
