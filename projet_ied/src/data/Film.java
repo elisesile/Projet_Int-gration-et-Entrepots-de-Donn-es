@@ -123,12 +123,12 @@ public class Film {
 	}
 
 	public String getFilmInformationForFilm() {
-		return "titre=" + titre + ", dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
-				+ distributeur + ", budget=" + budget.intValue() + ", revenusEtatsUnis=" + revenusEtatsUnis.intValue() + ", revenusMondiaux="
-				+ revenusMondiaux.intValue() + ", realisateur=" + realisateur + ", acteurs=" + acteurs + ", producteur=" + producteur + ", resume=" + plot;
+		return "titre = " + titre + ", dateSortie = " + dateSortie + ", genre = " + genre + ", distributeur = "
+				+ distributeur + "\nbudget = " + budget.intValue() + ", revenusEtatsUnis = " + revenusEtatsUnis.intValue() + ", revenusMondiaux = "
+				+ revenusMondiaux.intValue() + "\nrealisateur = " + realisateur + ", acteurs = " + acteurs + ", producteur = " + producteur + "\nresume = " + plot;
 	}
 	public String getFilmInformationForActor() {
-		return "titre=" + titre + ", dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
-				+ distributeur + ", realisateur=" + realisateur + ", producteur=" + producteur;
+		return "titre = " + titre + ", dateSortie = " + dateSortie + ", genre = " + genre + ", distributeur = "
+				+ distributeur + ", realisateur = " + realisateur + ", producteur = " + producteur;
 	}
 }
