@@ -54,12 +54,16 @@ public class TestConsole {
 					//search by title
 					films.add(Mediator.getFilmFromTitle(name));
 					
+					
 					for(Film film : films) {
-						System.out.println(film.getFilmInformationForFilm());
+						
+						if (film.getActeurs()=="null" && film.getDateSortie()==null && film.getGenre()==null && film.getPlot()==null && film.getRealisateur()=="null" && film.getProducteur()=="null" ) {
+							System.out.println("Sorry, we have no information about a movie with this title.");
+						}else {
+							System.out.println(film.getFilmInformationForFilm());
+						}
 					}
-					if (films.isEmpty()) {
-						System.out.println("Sorry, we have no information about a movie with this title.");
-					}
+					
 				}
 				else if(Integer.parseInt(type) == 2){
 					//search by actor
