@@ -123,7 +123,7 @@ public class Film {
 	}
 
 	public String getFilmInformationForFilm() {
-		return "titre=" + titre + "dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
+		return "titre=" + titre + ", dateSortie=" + dateSortie + ", genre=" + genre + ", distributeur="
 				+ distributeur + ", budget=" + budget.intValue() + ", revenusEtatsUnis=" + revenusEtatsUnis.intValue() + ", revenusMondiaux="
 				+ revenusMondiaux.intValue() + ", realisateur=" + realisateur + ", acteurs=" + acteurs + ", producteur=" + producteur + ", resume=" + plot;
 	}

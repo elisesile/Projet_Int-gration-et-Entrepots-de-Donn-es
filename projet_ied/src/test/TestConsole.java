@@ -9,10 +9,11 @@ import projet.main_1_0.main;
 import mediator.Mediator;
 
 public class TestConsole {
+		//Films
 	//Ed Wood
 	//Avatar
 	//Man of Steel
-	
+		//Actors
 	//Sean Penn
 	//Dev Patel
 	//Mel Gibson
@@ -23,6 +24,7 @@ public class TestConsole {
 		tn.generateMoviesInformation();
 
 		//Fill database from Talend Jobs
+		System.out.println("Add content to database...");
 		main talendJob = new main();
 		talendJob.runJob(new String[]{});
 		
