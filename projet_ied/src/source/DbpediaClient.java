@@ -41,9 +41,9 @@ public class DbpediaClient {
 	            	temp+= value.substring(value.lastIndexOf("/"))+",";
 	            }
 	            
-	            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")));
+	            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")).replace("_", " "));
 	            
-	            film.setRealisateur(real.substring(0,real.lastIndexOf(",")));
+	            film.setRealisateur(real.substring(0,real.lastIndexOf(",")).replace("_", " "));
 	        	
 	            temp = "";
 	            sep = qs.get("prods").toString().split(",");
@@ -51,7 +51,7 @@ public class DbpediaClient {
 	            	temp += value.substring(value.lastIndexOf("/"))+",";
 	            }
 	            
-	            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")));
+	            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")).replace("_", " "));
             }else{
             	film.setActeurs("null");
             	film.setProducteur("null");
@@ -94,20 +94,20 @@ public class DbpediaClient {
             while (rs.hasNext()) {
             	qs = rs.nextSolution();
             	titre = qs.get("titre").toString();
-            	titre = titre.substring(0,titre.indexOf("@"));
+            	titre = titre.substring(0,titre.indexOf("@")).replace("_", " ");
             	
             	teemp = qs.get("reals").toString().split(",");
             	for (String value : teemp) {
             		chng+= value.substring(value.lastIndexOf("/")+1)+",";
             	}
-            	real = chng.substring(0,chng.lastIndexOf(","));
+            	real = chng.substring(0,chng.lastIndexOf(",")).replace("_", " ");
             	
             	teemp = qs.get("prods").toString().split(",");
             	chng = "";
             	for (String value : teemp) {
             		chng+= value.substring(value.lastIndexOf("/")+1)+",";
             	}
-            	prod = chng.substring(0,chng.lastIndexOf(","));
+            	prod = chng.substring(0,chng.lastIndexOf(",")).replace("_", " ");
             	
             	Film f = new Film(titre,real,prod,actor);
             	
