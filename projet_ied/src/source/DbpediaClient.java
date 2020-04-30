@@ -18,8 +18,8 @@ public class DbpediaClient {
         Query query = QueryFactory.create(queryStr);
         QuerySolution qs = null;
         
-        String real = null;
-        String temp = null;
+        String real = "";
+        String temp = "";
 
         try ( QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query) ) {
             ((QueryEngineHTTP)qexec).addParam("timeout", "10000") ;
@@ -34,7 +34,7 @@ public class DbpediaClient {
             }
             
             String[] sep = qs.get("acteurs").toString().split(",");
-            temp = null;
+            temp = "";
             for (String value : sep) {
             	temp+= value.substring(value.lastIndexOf("/"))+",";
             }
@@ -43,7 +43,7 @@ public class DbpediaClient {
             
             film.setRealisateur(real.substring(0,real.lastIndexOf(",")));
         	
-            temp = null;
+            temp = "";
             sep = qs.get("prods").toString().split(",");
             for (String value : sep ) {
             	temp += value.substring(value.lastIndexOf("/"))+",";
@@ -73,11 +73,11 @@ public class DbpediaClient {
         Query query = QueryFactory.create(queryStr);
         ArrayList<Film> all = new ArrayList<Film>();
         QuerySolution qs = null;
-        String titre = null;
-        String real = null;
-        String prod = null;
-        String chng = null;
-        String [] teemp = null ;
+        String titre = "";
+        String real = "";
+        String prod = "";
+        String chng = "";
+        String [] teemp = null;
         
 
         try ( QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query) ) {
@@ -96,7 +96,7 @@ public class DbpediaClient {
             	real = chng.substring(0,chng.lastIndexOf(","));
             	
             	teemp = qs.get("prods").toString().split(",");
-            	chng = null;
+            	chng = "";
             	for (String value : teemp) {
             		chng+= value.substring(value.lastIndexOf("/"))+",";
             	}
@@ -106,7 +106,7 @@ public class DbpediaClient {
             	
             	all.add(f);
             	
-            	chng = null;
+            	chng = "";
             	teemp = null;
             }
         	
