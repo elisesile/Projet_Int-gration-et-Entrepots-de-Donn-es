@@ -20,6 +20,7 @@ public class DbpediaClient {
         
         String real = "";
         String temp = "";
+        String[] sep = null;
 
         try ( QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query) ) {
             ((QueryEngineHTTP)qexec).addParam("timeout", "10000") ;
@@ -28,28 +29,34 @@ public class DbpediaClient {
             while (rs.hasNext()) {
             	qs = rs.nextSolution();
             	temp = qs.get("real").toString();
-            	temp = temp.substring(temp.lastIndexOf("/"));
+            	temp = temp.substring(temp.lastIndexOf("/")+1);
             	real += temp;
             	real += ",";
             }
             
-            String[] sep = qs.get("acteurs").toString().split(",");
-            temp = "";
-            for (String value : sep) {
-            	temp+= value.substring(value.lastIndexOf("/"))+",";
-            }
-            
-            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")));
-            
-            film.setRealisateur(real.substring(0,real.lastIndexOf(",")));
-        	
-            temp = "";
-            sep = qs.get("prods").toString().split(",");
-            for (String value : sep ) {
-            	temp += value.substring(value.lastIndexOf("/"))+",";
-            }
-            
-            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")));
+            if (qs != null) {
+	            sep = qs.get("acteurs").toString().split(",");
+	            temp = "";
+	            for (String value : sep) {
+	            	temp+= value.substring(value.lastIndexOf("/"))+",";
+	            }
+	            
+	            film.setActeurs(temp.substring(0,temp.lastIndexOf(",")));
+	            
+	            film.setRealisateur(real.substring(0,real.lastIndexOf(",")));
+	        	
+	            temp = "";
+	            sep = qs.get("prods").toString().split(",");
+	            for (String value : sep ) {
+	            	temp += value.substring(value.lastIndexOf("/"))+",";
+	            }
+	            
+	            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")));
+            }else {
+            	film.setActeurs("null");
+            	film.setProducteur("null");
+            	film.setRealisateur("null");
+            }            
             
         	return film;
         
@@ -91,14 +98,14 @@ public class DbpediaClient {
             	
             	teemp = qs.get("reals").toString().split(",");
             	for (String value : teemp) {
-            		chng+= value.substring(value.lastIndexOf("/"))+",";
+            		chng+= value.substring(value.lastIndexOf("/")+1)+",";
             	}
             	real = chng.substring(0,chng.lastIndexOf(","));
             	
             	teemp = qs.get("prods").toString().split(",");
             	chng = "";
             	for (String value : teemp) {
-            		chng+= value.substring(value.lastIndexOf("/"))+",";
+            		chng+= value.substring(value.lastIndexOf("/")+1)+",";
             	}
             	prod = chng.substring(0,chng.lastIndexOf(","));
             	
