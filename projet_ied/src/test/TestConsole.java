@@ -51,6 +51,9 @@ public class TestConsole {
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForFilm());
 					}
+					if (films.isEmpty()) {
+						System.out.println("Sorry, we have no information about a movie with this title.");
+					}
 				}
 				else if(Integer.parseInt(type) == 2){
 					//search by actor
@@ -58,6 +61,9 @@ public class TestConsole {
 					
 					for(Film film : films) {
 						System.out.println(film.getFilmInformationForActor());
+					}
+					if (films.isEmpty()) {
+						System.out.println("Sorry, we have no information about this person.");
 					}
 				}
 			}
