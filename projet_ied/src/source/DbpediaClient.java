@@ -52,13 +52,13 @@ public class DbpediaClient {
 	            }
 	            
 	            film.setProducteur(temp.substring(0,temp.lastIndexOf(",")));
-            }else {
+            }else{
             	film.setActeurs("null");
             	film.setProducteur("null");
             	film.setRealisateur("null");
             }            
             
-        	return film;
+        	return film ;
         
             
         }catch (Exception e) {
