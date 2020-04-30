@@ -70,7 +70,7 @@ public class TestConsole {
 					films = Mediator.getFilmsFromActor(name);
 					
 					for(Film film : films) {
-						System.out.println(film.getFilmInformationForActor());
+						System.out.println(" +  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -"+"\n | "+film.getFilmInformationForActor());
 					}
 					if (films.isEmpty()) {
 						System.out.println("Sorry, we have no information about this person.");
